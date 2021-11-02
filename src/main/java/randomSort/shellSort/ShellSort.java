@@ -17,17 +17,17 @@ public class ShellSort {
 
     public static void getShellSort() {
         int[] a = RandomArrayUtil.getRandomArray(10);
+//        int[] a = {9,8,7,6,5,4,3,2,1};
         System.out.println("***************************");
         //希尔增量
-        int gap = a.length/2;
-
-        for (int i=0;i<gap;i++) {
-
-            for (int j=i+gap;j>0;j--){
-                if (a[j]<a[i]) {
-                    int temp = a[i];
-                    a[i] = a[j];
-                    a[j] = temp;
+        for (int gap = a.length/2;gap>0;gap/=2) {
+            for (int i=gap;i<a.length;i++) {
+                int j=i;
+                while (j-gap >= 0 && a[j] < a[j-gap]){
+                    int temp = a[j];
+                    a[j] = a[j-gap];
+                    a[j-gap] = temp;
+                    j-=gap;
                 }
             }
         }
